@@ -1,0 +1,116 @@
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 300px);
+    grid-template-areas: 
+    "header header header"
+    "aside main section"
+    "footer footer footer";
+}
+
+/* Aplicăm zonele corecte */
+header { grid-area: header; background-color: aqua; }
+aside { grid-area: aside; background-color: blueviolet; }
+main { grid-area: main; background-color: burlywood; }
+section { grid-area: section; background-color: brown; }
+footer { grid-area: footer; background-color: chartreuse; }
+
+/* Responsivitate pentru ecrane mai mici */
+@media screen and (max-width: 768px) {
+    #grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows:repeat(5, 150px);
+        grid-template-areas: 
+        "header"
+        "main"
+        "section"
+        "aside"
+        "footer";
+    }
+}
+
+
+#grid-gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-rows:minmax(150px, 1fr);
+}
+
+#img1{
+    background-color: aqua;
+}
+
+#img2{
+    background-color: aquamarine;
+}
+
+#img3{
+    background-color: cadetblue;
+}
+
+@media screen and (max-width: 768px) {
+    #grid-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, minmax(150px, auto));
+    }
+}
+
+
+
+#grid-card{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 150px;
+}
+
+#card-1{
+    background-color: aqua;
+}
+
+#card-2{
+    background-color:red;
+}
+
+#card-3{
+    background-color: purple;
+}
+
+#card-4{
+    background-color: yellow;
+}
+
+
+
+@media screen and (min-width: 768px) and (max-width: 919px) {
+    #grid-card {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, minmax(150px, auto));
+    }
+}
+
+@media screen and (max-width: 767px){
+    #grid-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, minmax(150px, auto));
+    }
+}
+
+
+#grid-section{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 150px;
+    color: white;
+}
+
+#el-1{
+    background-color: chocolate;
+}
+
+#el-2{
+    background-color:black;
+}
+
+#el-3{
+    background-color: greenyellow;
+}
