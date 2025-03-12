@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Functia sincrona
+        function sincron() {
+            console.log("Pasul 1")
+            console.log("Pasul 2")
+            console.log("Pasul 3")
+        }
+
+        sincron() //=> codul se executa fix in ordinea in 
+        //care se scrie
+
+        //Functia asincrona 
+        console.log("Incepem")
+        setTimeout(() => {
+            console.log("Asteapta 2 secunde...")
+        }, 2000)
+
+        console.log("Final!") //=> permite ca unele operatiuni 
+        //sa fie executate in fundal,
+        // fara sa blocheze codul principal, util pentru sarcini care dureaza(cereri API, citirea fisierelor, timere)
+
+        //fetch()
+        fetch("https://jsonplaceholder.typicode.com/posts/1")
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error))
+
+        //fetch() este folosit pentru a face cereri catre un API,
+        //Ce se intampla mai exact in codul meu?
+        //fetch() face o cerere catre API https:jsonplaceholder...., acesta returneaza un Promise,
+        //.then()este folosit pentru a gestiona un promise, preia raspunsul, convertim datele intr-un json, 
+        //preluam datele intr-o variabila, apoi le afisam. 
+        //catch() prinde errorile si le afiseaza.
+        let promisiune = new Promise((resolve, reject) => {
+            setTimeout(() => resolve("succes!"), 2000)
+        });
+
+        promisiune.then(mesaj => console.log(mesaj))
+        //.then() este folosit pentru a rula cod dupa ce un Promise este rezolvat.
+
+        //Ce este un Promise?
+        //Un promis este un obiect care reprezinta rezultatul unei operatiuni asincrone si poate avea 3 stari:
+        //peding(in asteptare)
+        //resolved(rezolvat cu succes -> .then())
+        //rejected(esuat -> .catch())
+        //Exemplu de promise:
+        let promision = new Promise((resolve, reject) => {
+            let succes = true;
+            setTimeout(() => {
+                if (succes) {
+                    resolve("Operatiunea a reusit!");
+                }
+                else {
+                    reject("Operatiunea a esuat!");
+                }
+            }, 3000);
+        });
+
+        promision
+            .then(mesaj => console.log(mesaj))
+            .then(eroare => console.log("Eroare:", eroare))
+
+        //Ce face un Promise.all()?
+        //Permite rularea mai multor Promises in pararel si returneaza toate rezultatele intr-un array.
+        //Daca unul dintre Promises esueaza, toate sunt respinse.
+        //Exemplu:
+        let promision_1 = new Promise((resolve) => setTimeout(() => resolve("Date 1"), 2000));
+        let promision_2 = new Promise((resolve) => setTimeout(() => resolve("Date 2"), 2000));
+
+        Promise.all([promision_1, promision_2])
+            .then(rezultate => console.log(rezultate))
+            .catch(errors => console.log("Errori:", errors))
+
+        //Ce face await?
+        //await opreste executia functiei async pana cand un Promise este rezolvat.
+        //Trebuie folosit doar intr-o functie async.
+        //Exemplu de await() si fetch():
+        async function getData() {
+            let response = await fetch("https://jsonplaceholder.typicode.com/posts/1") //  in cazul de fata "await" asteapta pana cand "fetch" face un Promise(rezultat) la API. "
+            let data = await response.json(); //await asteapta pana cand raspunsul este convertit in JSON, dupa care este aribuit variabilei "data".
+            console.log(data);
+        }
+        getData()
+
+        //Exemplu cu try/catch
+        async function gData() {
+            try {
+                let response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+                if (!response.ok) throw new Error("Eroare la server!");
+                let data = await response.json();
+                console.log(data);
+            }
+            catch (error) {
+                console.log("Eroare:", error.message)
+
+            }
+        }
+
+        gData()
+
+    </script>
+</body>
+
+</html>

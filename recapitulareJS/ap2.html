@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p id="mesaj">Mesaj</p>
+    <button type="button" id="schimba">Schimba</button>
+    <p class="text">Paragraf 1</p>
+    <p class="text">Paragraf 2</p>
+    <p class="text">Paragraf 3</p>
+    <a id="link" href="https://google.com">Google</a>
+
+
+    <script>
+
+        const paragraf = document.getElementById("mesaj");
+        const btn = document.getElementById("schimba");
+
+        btn.addEventListener("click", function () { paragraf.textContent = "text schimbat" })
+
+    </script>
+
+    <script>
+        const text = document.querySelectorAll(".text");
+
+        text.forEach(element => element.style.color = "red")
+    </script>
+
+    <script>
+        const a = document.getElementById("link");
+        let href = a.getAttribute("href");
+        console.log(href);
+    </script>
+    <script>
+        let promis =  fetch("https://jsonplaceholder.typicode.com/posts/1")
+            .then(response => response.json())
+            .then(data => console.log(data.title))
+            .catch(error => console.log(error))
+
+    
+
+        async function getTitle(){
+            let response = await fetch ("https://jsonplaceholder.typicode.com/posts/1")
+            let data = await response.json()
+            console.log(data.title)
+        }
+
+        getTitle()
+
+
+    </script>
+</body>
+
+</html>
