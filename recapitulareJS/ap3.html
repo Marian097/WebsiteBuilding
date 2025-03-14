@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Tratarea evenimentului cu onBlur 
+     Acesta se declanseaza atunci cand utilizatorul paraseste campul de input.-->
+    <input type="text" id="nume" onblur="afiseazaMesaj()" placeholder="Introdu numele">
+    <p id="mesaj"></p>
+
+    <script>
+        function afiseazaMesaj() {
+            document.getElementById("mesaj").textContent = "Ai ieșit din câmpul de input!";
+        }
+    </script>
+
+    <!-- tratarea evenimentelor cu onFocus 
+     Acesta se declanseaza cand utilizatorul face click pe un input sau navigheaza catre el cu TAB-->
+    <input type="text" id="nume" onfocus="schimbaStilul(this)" placeholder="Introdu numele">
+
+    <script>
+        function schimbaStilul(input) {
+            input.style.backgroundColor = "yellow";
+        }
+    </script>
+
+    <!-- onChange
+     Se declanseaza cand utilizatorul schimba valoarea unui input. -->
+    <input type="text" id="nume" onchange="afiseazaValoarea(this)" placeholder="Scrie ceva...">
+    <p id="output"></p>
+
+    <script>
+        function afiseazaValoarea(input) {
+            document.getElementById("output").textContent = "Ai scris: " + input.value;
+        }
+    </script>
+
+
+    <!-- onSubmit
+     Se declanseaza atunci cand utilizatorul apasa tasta unui button de tip submit. -->
+    <form onsubmit="verifica(event)">
+        <input type="text" id="email" placeholder="Introdu emailul">
+        <button type="submit">Trimite</button>
+    </form>
+
+    <script>
+        function verifica(event) {
+            event.preventDefault(); // Oprește trimiterea formularului
+            alert("Formular trimis!");
+        }
+    </script>
+
+    <!-- onReset
+     Se declanseaza cand utilizatorul apasa un button de tip reset -->
+    <form onreset="confirmareReset()">
+        <input type="text" id="nume" placeholder="Introdu numele">
+        <button type="reset">Resetează</button>
+    </form>
+
+    <script>
+        function confirmareReset() {
+            alert("Formular resetat!");
+        }
+    </script>
+
+    <!-- onSelect 
+     Se declanseaza cand utilizatorul selecteaza un text din input cu ctrl + a-->
+    <input type="text" id="text" onselect="afiseazaSelectia()" value="Selectează acest text!">
+    <p id="mesaj"></p>
+
+    <script>
+        function afiseazaSelectia() {
+            document.getElementById("mesaj").textContent = "Ai selectat text!";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--  Exercițiul 1 – Schimbă textul unui element la click
+    Selectează un <p> cu id="paragraf".
+    Când utilizatorul apasă pe el, schimbă textul în "Text modificat!". -->
+    <p id="paragraf">Paragraf original</p>
+
+    <script>
+        const parag = document.getElementById("paragraf");
+        const btn = document.createElement("button");
+        btn.textContent="Apasa-ma!";
+        document.body.appendChild(btn);
+
+        btn.addEventListener("click", function (){
+            parag.textContent = "Text Modificat"
+
+        });
+    </script>
+
+    <!-- 🔹 Exercițiul 2 – Schimbă culoarea unui div când utilizatorul trece cu mouse-ul peste el
+        Selectează un div cu id="box".
+        Când utilizatorul pune mouse-ul peste el (mouseover), schimbă culoarea de fundal la "blue".
+        Când utilizatorul scoate mouse-ul (mouseout), culoarea revine la "white". -->      
+
+    <div id="box" style="width: 100px; height: 100px; background-color: white;"></div>
+    <script>
+        const div = document.getElementById("box");
+        div.style.border="1px solid black";
+        div.addEventListener("mouseover", function(){
+            div.style.backgroundColor="red"
+        })
+
+        div.addEventListener("mouseout", function (){
+            div.style.backgroundColor="white";
+        })
+    </script>
+
+    <!-- 🔹 Exercițiul 3 – Afișează ce tastează utilizatorul într-un input
+            Selectează un input cu id="camp".
+            Când utilizatorul scrie în el (input), afișează textul într-un <p> cu id="output". -->
+    <input type="text" id="camp" placeholder="Scrie ceva...">
+    <p id="output">Output</p>
+    <script>
+        const input=document.getElementById("camp");
+        input.addEventListener("input", function(){
+            let parag = document.getElementById("output");
+            let txtInput=input.value;
+            parag.innerHTML =`<p>${txtInput}</p>`;
+        })
+    </script>
+
+    <!-- 🔹 Exercițiul 4 – Creează un nou li într-o listă la apăsarea unui buton
+         Selectează lista ul și butonul #adauga.
+         Când utilizatorul apasă pe buton, adaugă un nou li cu textul "Element nou". -->
+    <ul id="lista">
+        <li>Element 1</li>
+        <li>Element 2</li>
+    </ul>
+    <button id="adauga">Adaugă element</button>
+    <script>
+        const btn2 = document.getElementById("adauga");
+        const ul = document.querySelector("#lista");
+
+        btn2.addEventListener("click", function(){
+            let li = document.createElement("li");
+            li.textContent = "Element 3";
+            ul.appendChild(li);
+        });
+    </script>
+    
+
+
+
+
+</body>
+
+</html>
