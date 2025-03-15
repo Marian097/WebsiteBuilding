@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .mare {
+        width: 100px !important;
+        height: 100px !important;
+      }
+
+      .dark-mode {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 🔹 Exercițiul 1 – Alternarea textului la click
+     ✅ Sarcina:
+
+    Selectează un <p> cu id="text".
+    Când utilizatorul apasă pe el, dacă are textul "Apasă-mă!", schimbă-l în "Ai apăsat!".
+     Dacă utilizatorul apasă din nou, revine la "Apasă-mă!". -->
+    <p id="text">Apasă-mă!</p>
+
+    <script>
+      const paragraf = document.getElementById("text");
+
+      paragraf.addEventListener("click", function () {
+        if (paragraf.textContent == "Apasa-ma!") {
+          paragraf.textContent = "Ai apasat!";
+        } else {
+          paragraf.textContent = "Apasa-ma!";
+        }
+      });
+    </script>
+    <!-- 🔹 Exercițiul 2 – Adăugarea și eliminarea unei clase
+         ✅ Sarcina:
+
+          Selectează un div cu id="cerc".
+          Când utilizatorul apasă un buton, adaugă clasa "mare" care face div-ul mai mare.
+          Dacă utilizatorul apasă din nou butonul, elimină clasa "mare" (folosește toggle). -->
+
+    <div
+      id="cerc"
+      style="
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 50%;
+      "
+    ></div>
+    <button id="schimbaDimensiune">Mărește/Micșorează</button>
+
+    <script>
+      const div = document.getElementById("cerc");
+      const btn = document.getElementById("schimbaDimensiune");
+
+      btn.addEventListener("click", function () {
+        div.classList.toggle("mare");
+      });
+    </script>
+    <!-- 🔹 Exercițiul 3 – Contor de click-uri
+       ✅ Sarcina:
+
+        Creează un buton cu id="counterBtn".
+        De fiecare dată când utilizatorul apasă pe el, afișează numărul de apăsări într-un <p> cu id="counterDisplay". -->
+    <button id="counterBtn">Click me</button>
+    <p id="counterDisplay">Ai apăsat de 0 ori.</p>
+
+    <script>
+      const btnCounter = document.getElementById("counterBtn");
+      const paraf = document.getElementById("counterDisplay");
+      let counter = 0;
+
+      btnCounter.addEventListener("click", function () {
+        counter++;
+        paraf.textContent = counter;
+      });
+    </script>
+    <!-- 🔹 Exercițiul 4 – Schimbă tema întunecată/deschisă
+✅ Sarcina:
+
+Creează un buton care schimbă fundalul paginii între alb și negru.
+Dacă fundalul este alb, textul trebuie să fie negru.
+Dacă fundalul este negru, textul trebuie să fie alb. -->
+
+    <button id="themeBtn">Schimbă Tema</button>
+    <script>
+      const btnBackground = document.getElementById("themeBtn");
+      btnBackground.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+      });
+    </script>
+    <!-- 🔹 Exercițiul 5 – Validare simplă de formular
+✅ Sarcina:
+
+Selectează un formular cu id="myForm".
+Când utilizatorul încearcă să trimită formularul, verifică dacă inputul cu id="nume" este gol.
+Dacă este gol, afișează un mesaj de eroare și oprește trimiterea. -->
+    <form id="myForm">
+      <input type="text" id="nume" placeholder="Introdu numele" />
+      <button type="submit" id="btn">Trimite</button>
+    </form>
+    <p id="errorMsg" style="color: red"></p>
+    <script>
+        const $Form = document.getElementById("myForm");
+        const p = document.getElementById("errorMsg");
+        $Form.addEventListener("submit", function(event){
+            let input = document.getElementById("nume");
+            if (input.value.trim() === "")
+            {
+                p.textContent = "ERROR";
+                event.preventDefault()
+
+            }
+        })
+    </script>
+  </body>
+</html>
