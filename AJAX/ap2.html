@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="number" id="userIdInput" placeholder="Introdu ID utilizator" />
+    <button id="submit">Caută postările</button>
+
+    <div id="dataview"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+        var dataview = $("#dataview");
+
+        function getData(iduser){
+            return new Promise(function(resolve, reject){
+                $.ajax({
+                    type:"GET",
+                    url: 'https://jsonplaceholder.typicode.com/users/' + iduser + '/posts',
+                    dataType: "JSON",
+                    success: function(data){
+                        if (data.length > 0){
+                            resolve(data)
+                        }
+                        else{
+                            reject(`Nu s-au gasit postari pentru utilizatorul cu ID-ul ${iduser}`)
+                        }
+                    },
+
+                    error: function(xhr, status, error)
+                    {
+                        reject(`Eroare de retea: ${xhr.status}`)
+                    }
+
+                })
+            })
+        }
+
+
+        function showData(posts)
+        {
+            let html ="";
+            posts.forEach(post=>{
+                html += `<ul>
+                    <li><strong> ID:</strong> ${post.id}</li>
+                    <li><strong> title:</strong> ${post.title}</li>
+                    <li><strong> body:</strong> ${post.body}</li>
+                </ul>`
+            });
+
+            dataview.html(html);
+        };
+
+
+        $(document).ready(function(){
+            $("#submit").click(function(){
+                const userId = $("#userIdInput").val();
+
+                if (!userId)
+                {
+                    alert(`Te rog introdu un ID de utilizator!`);
+                    return;
+                }
+
+                dataview.html("<p>Se incarca</p>");
+
+                getData(userId)
+                .then(posts => {
+                    showData(posts);
+                })
+                .catch(err => {
+                    dataview.html(`<p style="color:red">${err}</p>`)
+                });
+            });
+        });
+
+
+
+    </script>
+  </body>
+</html>
