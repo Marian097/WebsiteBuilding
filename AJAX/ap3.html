@@ -20,15 +20,51 @@
     crossorigin="anonymous"
   ></script>
 
-    <script>
-        $(document).ready(function(){
-            $("#loadPosts").click(function(){
-                let inputText = $("#userIdInput").val();
-                console.log(inputText);
+  <script>
+    $(document).ready(function (){
+        $("#loadPosts").click(function(){
+            let idText = $("#userIdInput").val();
+            console.log(idText);
+            function getData(idText){
+                return new Promise(function(resolve, reject){
+                    $.ajax({
+                        type:"GET",
+                        url:`https://jsonplaceholder.typicode.com/users/${idText}/posts`,
+                        dataType: "json",
+                        success: function(data){
+                            if (data.length > 0)
+                            {
+                                resolve(data)
+                            }
+                            else{
+                                reject("ID-ul nu există în baza de date.")
+                            }
+                        },
+
+                        error: function(err){
+                            reject(err)
+                        }
+
+                    });
+                    
+                });
+            };
+            function showData(posts)
+        {
+            let ul = $("#postList")
+            ul.html("");
+            posts.forEach(element => {
+                let li = $(`<li>${element.title}</li>`)
+                ul.append(li);
             })
-        })
-    </script>
-    
+        };
+            getData(idText)
+            .then(data => showData(data))
+            .catch(err => $("#postList").html(`<li style="color:red;">${err}</li>`));
+        });
+    });
+  </script>
+
 
 </body>
 </html>

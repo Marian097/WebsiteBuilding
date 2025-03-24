@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" id="form">
+      <label for="title">Titlu:</label>
+      <input type="text" name="title" id="postTitle" />
+      <label for="content">Continut:</label>
+      <textarea name="content" id="postBody"></textarea>
+      <button type="submit" id="submitPost">Submit</button>
+    </form>
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"
+  ></script>
+
+  <script>
+
+    $(document).ready(function(){
+        $("#form").submit(function(event){
+            event.preventDefault()
+            let valTitleInput = $("#postTitle").val();
+            let valContentTextArea = $("#postBody").val()
+            fetch("https://jsonplaceholder.typicode.com/posts", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({title: valTitleInput, body: valContentTextArea})
+            })
+            .then(response => response.json())
+            .then(data => {console.log(`Postarea a fost trimisa cu succes: ${data}`), alert("Postare trimisa"), console.log(data)})
+            .catch(err => {console.log(`Eroare la trimiterea postarii ${err}`), alert("A aparut o eroare!")})
+        })
+    })
+  </script>
+
+  </body>
+</html>

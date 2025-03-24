@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="id">Id:</label>
+    <input type="text" name="id" id="id" />
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" />
+    <label for="body">Body:</label>
+    <input type="text" name="body" id="body" />
+    <label for="userId">UserId:</label>
+    <input type="text" name="userid" id="userid" />
+    <button type="submit" id="btn">Trimite</button>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                let newId= $("#id").val()
+                let newTitle = $("#title").val()
+                let newBody = $("#body").val()
+                let newUserId = $("#userid").val()
+                fetch("https://jsonplaceholder.typicode.com/posts/1", {
+                    method: "PUT",
+                    headers: {"Content-Type" : "application/json"},
+                    body: JSON.stringify({
+                        id: newId,
+                        title: newTitle,
+                        body: newBody,
+                        userId: newUserId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {console.log("Postare actualizata", data)})
+                .catch(err => {console.log(err)})
+            })
+        })
+    </script>
+  </body>
+</html>
