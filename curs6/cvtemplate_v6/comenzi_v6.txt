@@ -1,0 +1,58 @@
+I. Traducere fisier HTMl static
+
+https://github.com/nohaelgendy/en-ar-demo/blob/main/index.html
+https://nestcode.co/en/blog/using-javascript-to-translate-your-static-website
+https://www.jqueryscript.net/text/internationalize-multi-language.html
+
+Pas1.
+Modificam fisierele HTML si adaugam atributul
+data-tr="valoare_unica" pentru elementele ce au continut de tradus
+
+Pas2.
+Facem un script de tip "Web Scraping" care sa detecteze automat toate elementele 
+ce au atributul data-tr
+https://medium.com/@appiness68/web-scraping-using-node-js-2d0e1a1b606c
+https://circleci.com/blog/web-scraping-with-cheerio/
+
+https://github.com/cheeriojs/cheerio
+
+npm install cheerio --save-dev
+
+Pas3.
+touch buildJSON.js
+
+Pas4.
+editam fisierul buildJSON.js
+
+Pas5. rulam fisierul buildJSON.js
+
+Dupa ce generam folderul ./dist adica 
+rulam npm run dev apoi rulam 
+
+npde buildJSON.js
+
+sau folosim package.json
+adaugam in zona de  "scripts": {......}
+"buildJSON": "node buildJSON",
+npm run buildJSON
+
+Pas6. pas-ul 5 va genera fisierul ./src/lang/trans.json
+
+Pas7.
+touch src/lang/en.json src/lang/ro.json
+fiserul generat ./src/lang/trans.json il copiem in cele doua fisiere
+Pas8.
+Traducem manual sau automat continutul in limba dorita
+
+
+https://translate.i18next.com/
+https://github.com/mololab/json-translator?tab=readme-ov-file
+https://poeditor.com/translate-json
+
+
+Pas9.
+npm run dev
+
+II.Dark Mode.
+https://sass-lang.com/documentation/variables/
+https://getbootstrap.com/docs/5.3/customize/color-modes/
