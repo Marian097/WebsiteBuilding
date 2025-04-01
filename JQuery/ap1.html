@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="list">
+
+    </ul>
+    <input type="text" name="text" id="text">
+    <button id="btn-add">Adauga</button>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $("#btn-add").click(function(){
+            let inputText = $("#text").val()
+            let button = `<button class="btn-delete">Sterge</button>`
+            let li = `<li>${inputText}${button}</li>`
+            $("ul").prepend(li);
+        });
+
+        $(".list").on("click", ".btn-delete", function () {
+            $(this).parent().remove();
+        });
+
+    </script>
+</body>
+
+</html>

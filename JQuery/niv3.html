@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>Audi</li>
+        <li>Bmw</li>
+        <li>Mercedes</li>
+    </ul>
+    <p class="p-1">Lorem ipsum dolor sit amet.</p>
+    <p class="p-2">Labore numquam nulla reiciendis perspiciatis?</p>
+    <p class="p-3">Voluptatum accusamus enim vero eum?</p>
+    <button id="btn-1">Add list</button>
+    <button id="btn-2">Remove list</button>
+    <br>
+    <br>
+    <br>
+    <form action="" id="form">
+        <label for="name">Nume:</label>
+        <input type="text" id="name">
+        <button type="submit" id="btn-submit">Submit</button>
+    </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <script>
+        $("#btn-1").click(function(){
+            $("ul").append("<li>Fiat</li>")
+        });
+
+        $("#btn-2").click(function(){
+            $("ul li:last-child").remove()
+        });
+
+        $("p").click(function(){
+            let nexEl=$(".p-3").next();
+            nexEl.css("background-color", "red");
+        });
+
+
+        $("ul li").each(function(index){
+            $(this).prepend((index + 1) + ".")
+        })
+
+
+        $("#form").submit(function(e){
+            e.preventDefault()
+            let nameInput = $("#name").val()
+            if (nameInput.length <= 3)
+            {
+                alert("Minim 3 caractere")
+            }
+            else{
+                alert("Formular trimis cu succes.")
+            }
+        })
+
+    </script>
+</body>
+</html>

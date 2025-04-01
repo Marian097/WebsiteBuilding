@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            animation: scale 2s ease forwards;
+        }
+
+
+        @keyframes scale {
+            0% {
+                width: 100px;
+                height: 100px;
+            }
+
+            100% {
+                width: 400px;
+                height: 400px;
+            }
+        }
+
+        .menu {
+            display: none;
+        }
+
+        #pgr{
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div style="width: 100px; height: 100px; background-color:blue">
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <button id="toogle-btn">Remove/Add-class</button>
+    <br>
+    <br>
+    <br>
+    <nav class="menu">
+
+        <ul>
+            <li>Acasa</li>
+            <li>Despre</li>
+            <li>Blog</li>
+            <li>Login</li>
+            <li>Sing-up</li>
+        </ul>
+    </nav>
+    <p id="pgr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime illo deleniti, necessitatibus, velit cum veniam
+        alias perspiciatis voluptatem non, laboriosam nihil officiis. Consequatur soluta ut ipsum, provident minima
+        libero dolore.</p>
+    <button id="slide-btn">Afiseaza</button>
+    <button id="btn-rm">Read More</button>
+
+    <input type="text" name="text" id="text">
+    <p id="output"></p>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        $("div").on("mouseenter", (function () {
+            $("div").addClass("container")
+        }))
+        $("div").on("mouseleave", (function () {
+            $("div").removeClass("container")
+        }))
+
+
+        $("#text").keyup(function () {
+            let text = $("#text").val();
+            $("#output").text(text);
+
+        });
+
+
+        $("#toogle-btn").click(function () {
+            $("div").toggleClass("container")
+        })
+
+
+        $("#slide-btn").click(function () {
+            $(".menu").slideToggle("slow")
+        })
+
+        $("#btn-rm").click(function(){
+            $("#pgr").slideToggle("slow");
+            $("#btn-rm").text("Read Less")
+
+        })
+    </script>
+</body>
+
+</html>
